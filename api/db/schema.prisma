@@ -4,8 +4,9 @@ datasource DS {
 }
 
 generator client {
-  provider      = "prisma-client-js"
-  binaryTargets = "native"
+  provider        = "prisma-client-js"
+  binaryTargets   = "native"
+  previewFeatures = ["createMany"]
 }
 
 model User {
@@ -25,4 +26,18 @@ model UserRole {
   userId    Int?
 
   @@unique([name, userId])
+}
+
+model Visit {
+  id          Int      @id @default(autoincrement())
+  code        String   @unique
+  department  String
+  firstName   String
+  lastName    String
+  visitTime   DateTime
+  email       String
+  idCode      String
+  dateOfBirth DateTime
+  sex         String
+  age         Int
 }

@@ -21,6 +21,9 @@ const Routes = () => {
         <Route path="/users/new" page={NewUserPage} name="newUser" />
         <Route path="/users/{id:Int}/edit" page={EditUserPage} name="editUser" />
       </Private>
+      <Private unauthenticated="home" role="upload">
+        <Route path="/upload" page={UploadPage} name="upload" />
+      </Private>
       <Route notfound page={NotFoundPage} />
     </Router>
   )

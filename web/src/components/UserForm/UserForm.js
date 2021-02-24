@@ -90,7 +90,7 @@ const UserForm = (props) => {
           multiple
           disabled={props?.user?.id && props?.user?.id === currentUser.id}
         >
-          <option value="view">View results</option>
+          <option value="view">View visits</option>
           <option value="upload">Upload files</option>
           <option value="manage">Manage users</option>
         </SelectField>
