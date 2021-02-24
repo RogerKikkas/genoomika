@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+const bcrypt = require('bcryptjs')
 const { PrismaClient } = require('@prisma/client')
 const dotenv = require('dotenv')
 
@@ -18,7 +19,29 @@ async function main() {
   //     await db.user.create({ data: { name: 'Admin', email: 'admin@email.com' }})
   //   }
 
-  console.info('No data to seed. See api/db/seed.js for info.')
+  const { email, password, roles } = {
+    email: 'admin@admin.com',
+    password: 'admin',
+    roles: ['view', 'upload', 'manage'],
+  }
+
+  const existing = await db.user.findMany({
+    where: { email },
+  })
+
+  if (!existing.length) {
+    const encryptedPassword = await bcrypt.hash(password, 12)
+
+    await db.user.create({
+      data: {
+        password: encryptedPassword,
+        email,
+        userRoles: {
+          create: roles.map((role) => ({ name: role })),
+        },
+      },
+    })
+  }
 }
 
 main()
