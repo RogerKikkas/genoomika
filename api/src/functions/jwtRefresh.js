@@ -33,7 +33,7 @@ export const handler = async (event) => {
   if (err || exp * 1000 < Date.now()) return { statusCode: 400 }
 
   // Compares refreshToken with the one stored on the db. Throws if they dont match
-  const { refreshToken: sRefreshToken, userRoles } = await db.user.findOne({
+  const { refreshToken: sRefreshToken, userRoles, id } = await db.user.findOne({
     where: { email },
     include: {
       userRoles: true,
@@ -46,11 +46,15 @@ export const handler = async (event) => {
   const roles = userRoles.map((role) => role.name)
 
   // Generates new pair of tokens
-  const accessToken = jwt.sign({ email, roles }, process.env.TOKEN_SIGN_KEY, {
-    expiresIn: process.env.ACCESS_TOKEN_TIME,
-  })
+  const accessToken = jwt.sign(
+    { id, email, roles },
+    process.env.TOKEN_SIGN_KEY,
+    {
+      expiresIn: process.env.ACCESS_TOKEN_TIME,
+    }
+  )
   const newRefreshToken = jwt.sign(
-    { email, roles },
+    { id, email, roles },
     process.env.TOKEN_SIGN_KEY,
     {
       expiresIn: process.env.REFRESH_TOKEN_TIME,

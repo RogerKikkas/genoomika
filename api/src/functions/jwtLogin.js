@@ -25,7 +25,7 @@ export const handler = async (event) => {
     }
 
   // Deconstruct User Data
-  const { password: sPassword, userRoles } = user
+  const { id, password: sPassword, userRoles } = user
 
   // Check if passwords match. Throws if they dont
   const match = await bcrypt.compare(password, sPassword)
@@ -41,13 +41,21 @@ export const handler = async (event) => {
   const roles = userRoles.map((role) => role.name)
 
   // Generates new pair of tokens
-  const accessToken = jwt.sign({ email, roles }, process.env.TOKEN_SIGN_KEY, {
-    expiresIn: process.env.ACCESS_TOKEN_TIME,
-  })
+  const accessToken = jwt.sign(
+    { id, email, roles },
+    process.env.TOKEN_SIGN_KEY,
+    {
+      expiresIn: process.env.ACCESS_TOKEN_TIME,
+    }
+  )
 
-  const refreshToken = jwt.sign({ email, roles }, process.env.TOKEN_SIGN_KEY, {
-    expiresIn: process.env.REFRESH_TOKEN_TIME,
-  })
+  const refreshToken = jwt.sign(
+    { id, email, roles },
+    process.env.TOKEN_SIGN_KEY,
+    {
+      expiresIn: process.env.REFRESH_TOKEN_TIME,
+    }
+  )
 
   // Update current user with refreshToken
   await db.user.update({

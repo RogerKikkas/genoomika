@@ -22,7 +22,9 @@ const AuthMiddleware = () => {
         )
         localStorage.setItem('rw_jwt_user', JSON.stringify(data?.data?.data))
       }
-    } catch (err) {}
+    } catch (err) {
+      //
+    }
 
     // Set headers for next operation
     operation.setContext({
