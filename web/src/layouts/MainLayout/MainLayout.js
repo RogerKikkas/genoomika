@@ -4,7 +4,7 @@ const MainLayout = ({ children }) => {
   return (
     <div className="rw-scaffold min-h-screen flex flex-row">
       <Menu />
-      <div className="bg-blue-200 w-4/5">
+      <div className="w-4/5">
         <main className="rw-main">{children}</main>
       </div>
     </div>

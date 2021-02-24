@@ -2,7 +2,7 @@ import { Link, routes } from '@redwoodjs/router'
 
 const MenuLink = (props) => {
   return (
-    <div className="w-full border-b-2 text-lg mb-2 text-gray-400 hover:text-gray-600">
+    <div className="w-full border-b-2 border-gray-400 text-lg mb-2 text-gray-600 hover:text-black">
       <Link className="" to={routes[props.route]()}>
         {props.children}
       </Link>

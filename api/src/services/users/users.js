@@ -1,5 +1,17 @@
+import { UserInputError } from '@redwoodjs/api'
 import { db } from 'src/lib/db'
 import { requireAuth } from 'src/lib/auth'
+import bcrypt from 'bcryptjs'
+
+const validate = (input) => {
+  if (input.email && !input.email.match(/[^@]+@[^.]+\..+/)) {
+    throw new UserInputError("Can't create new user", {
+      messages: {
+        email: ['is not formatted like an email address'],
+      },
+    })
+  }
+}
 
 export const users = () => {
   requireAuth({ role: 'manage' })
@@ -9,11 +21,16 @@ export const users = () => {
 export const user = ({ id }) => {
   return db.user.findUnique({
     where: { id },
+    include: { userRoles: true },
   })
 }
 
-export const createUser = ({ input }) => {
+export const createUser = async ({ input }) => {
   requireAuth({ role: 'manage' })
+  validate(input)
+
+  input.password = await bcrypt.hash(input.password, 12)
+
   return db.user.create({
     data: input,
   })

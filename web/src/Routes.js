@@ -16,6 +16,11 @@ const Routes = () => {
       <Private unauthenticated="login">
         <Route path="/" page={HomePage} name="home" />
       </Private>
+      <Private unauthenticated="home" role="manage">
+        <Route path="/users" page={UsersPage} name="users" />
+        <Route path="/users/new" page={NewUserPage} name="newUser" />
+        <Route path="/users/{id:Int}/edit" page={EditUserPage} name="editUser" />
+      </Private>
       <Route notfound page={NotFoundPage} />
     </Router>
   )

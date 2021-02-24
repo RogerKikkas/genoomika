@@ -20,4 +20,9 @@ export const schema = gql`
     name: String
     userId: Int
   }
+
+  type Mutation {
+    createUserRole(input: CreateUserRoleInput!): UserRole!
+    deleteUserUserRoles(userId: Int!): UserRole!
+  }
 `
