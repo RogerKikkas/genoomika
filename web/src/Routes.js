@@ -24,6 +24,9 @@ const Routes = () => {
       <Private unauthenticated="home" role="upload">
         <Route path="/upload" page={UploadPage} name="upload" />
       </Private>
+      <Private unauthenticated="home" role="view">
+        <Route path="/visits" page={VisitsPage} name="visits" />
+      </Private>
       <Route notfound page={NotFoundPage} />
     </Router>
   )

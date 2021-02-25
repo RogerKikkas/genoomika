@@ -18,7 +18,7 @@ const Menu = () => {
         </button>
       </div>
       <div className="flex-grow p-2 bg-gray-800">
-        {hasRole('view') && <MenuLink route="home">View visits</MenuLink>}
+        {hasRole('view') && <MenuLink route="visits">View visits</MenuLink>}
         {hasRole('upload') && <MenuLink route="upload">Upload files</MenuLink>}
         {hasRole('manage') && <MenuLink route="users">Manage users</MenuLink>}
       </div>

@@ -9,7 +9,7 @@ const LoginPage = () => {
   if (isAuthenticated) return <Redirect to={routes.home()} />
 
   return (
-    <div className="min-h-screen bg-blue-100 py-6 flex flex-col justify-center items-center">
+    <div className="min-h-screen bg-blue-500 py-6 flex flex-col justify-center items-center">
       <div className="p-4 bg-white rounded-sm max-w-xl w-96">
         <LoginForm />
       </div>

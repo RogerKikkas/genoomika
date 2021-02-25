@@ -15,7 +15,9 @@ const validate = (input) => {
 
 export const users = () => {
   requireAuth({ role: 'manage' })
-  return db.user.findMany()
+  return db.user.findMany({
+    orderBy: { id: 'asc' },
+  })
 }
 
 export const user = ({ id }) => {

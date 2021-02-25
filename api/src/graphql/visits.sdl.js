@@ -13,7 +13,13 @@ export const schema = gql`
     age: Int!
   }
 
+  type VisitPage {
+    visits: [Visit!]!
+    count: Int!
+  }
+
   type Query {
+    visitPage(page: Int, search: String): VisitPage
     visits: [Visit!]!
   }
 
