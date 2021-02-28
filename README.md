@@ -13,6 +13,9 @@ We use Yarn as our package manager. To get the dependencies installed, just do t
 
 ```terminal
 yarn install
+yarn redwood prisma migrate dev
+yarn redwood prisma db seed
+docker-compose up -d
 ```
 
 ### Fire it up
@@ -21,4 +24,4 @@ yarn install
 yarn redwood dev
 ```
 
-Your browser should open automatically to `http://localhost:8910` to see the web app. Lambda functions run on `http://localhost:8911` and are also proxied to `http://localhost:8910/.redwood/functions/*`. 
+Your browser should open automatically to `http://localhost:8910` to see the web app. Lambda functions run on `http://localhost:8911` and are also proxied to `http://localhost:8910/.redwood/functions/*`.
