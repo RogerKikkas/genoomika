@@ -24,7 +24,11 @@ export const QUERY = gql`
 export const beforeQuery = ({ page, search }) => {
   page = page ? parseInt(page, 10) : 1
 
-  return { variables: { page, search } }
+  return {
+    variables: { page, search },
+    fetchPolicy: 'cache-and-network',
+    nextFetchPolicy: 'cache-first',
+  }
 }
 
 export const Loading = () => <div>Loading...</div>
