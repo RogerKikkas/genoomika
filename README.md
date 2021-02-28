@@ -13,10 +13,19 @@ We use Yarn as our package manager. To get the dependencies installed, just do t
 
 ```terminal
 yarn install
+```
+
+Set up environment variables. Copy .env.defaults to .env and change a few of the variables depending on your local setup.
+
+```terminal
+docker-compose up -d
 yarn redwood prisma migrate dev
 yarn redwood prisma db seed
-docker-compose up -d
 ```
+
+Database seed will create a test account with the credentials:
+email: admin@admin.com
+password: admin
 
 ### Fire it up
 
