@@ -33,7 +33,7 @@ export const handler = async (event) => {
   return {
     statusCode: 200,
     // Expire auth coockie headers
-    headers: {
+    multiValueHeaders: {
       'set-cookie': [
         `refreshToken=; Path=/; expires=Thu, Jan 01 1970 00:00:00 UTC;`,
       ],

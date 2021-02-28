@@ -64,7 +64,7 @@ export const handler = async (event) => {
   return {
     statusCode: 200,
     // Set auth cookies on response headers
-    headers: {
+    multiValueHeaders: {
       'set-cookie': [`refreshToken=${refreshToken}; Path=/; HttpOnly`],
     },
     body: JSON.stringify({

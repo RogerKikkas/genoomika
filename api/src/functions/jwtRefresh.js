@@ -69,7 +69,7 @@ export const handler = async (event) => {
 
   return {
     statusCode: 200,
-    headers: {
+    multiValueHeaders: {
       'set-cookie': [`refreshToken=${newRefreshToken}; Path=/; HttpOnly`],
     },
     body: JSON.stringify({
